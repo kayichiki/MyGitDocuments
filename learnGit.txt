@@ -19,5 +19,17 @@ git init命令把当前目录变成Git可以管理的仓库（该命令后，会
 $ ssh-keygen -t rsa -C "youremail@example.com"
 （2）登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后点击“Add SSH Key”，填上任意Title，在Key文本框里粘帖id_rsa.pub文件的内容。
 Git支持SSH协议，所以GitHub只要知道了你的公钥，就可以确认只有你自己才能推送，GitHub允许你添加多个Key，你可以把公司、家里的电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。
+  6.添加远程库：已经在本地创建了一个Git仓库后，然后想在GitHub创建一个Git仓库，让这两个仓库进行远程同步。
+（1）登陆GitHub，点击“Create a new repo”按钮，创建一个GitHub仓库，该仓库是空的，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后把本地仓库内容推送到GitHub仓库。
+$ git remote add origin git@server-name:path/repo-name.git命令来关联一个GitHub远程库，远程库的名字就是origin，Git默认的叫法。
+（2）把本地仓库的所有内容推送到GitHub远程库上，用git push命令。由于远程库是空的，第一次推送master分支，加上-u参数，Git不但会把本地的master分支内容推送到远程的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+$ git push -u origin master（第一次） / $ git push origin master（简化命令）
+SSH警告：第一次使用clone/push命令连接GitHub时，会得到一个警告，是SSH连接在第一次验证GitHub服务器的key时，需要输入yes来确认是来自GitHub的连接，并加入本机的一个信任列表里。
+  7.从GitHub远程库克隆：本地没有仓库，先创建GitHub的远程库，然后从远程库克隆到本地仓库。多人协作开发，每人各自从GitHub远程库克隆一份就可以了。
+（1）登陆GitHub，创建一个新的仓库，该仓库自动创建README.md文件用于测试。
+（2）用git clone命令克隆一个本地仓库，Git默认用SSh协议，也可以使用https等协议。
+$ git clone git@server-name:path/repo-name.git
+克隆远程库的时候，所使用的远程主机自动被Git命名为origin，然后用git push、git pull、git fetch命令推送、获取更新。
+
 
 
