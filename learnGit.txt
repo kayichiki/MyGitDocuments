@@ -30,6 +30,30 @@ SSH警告：第一次使用clone/push命令连接GitHub时，会得到一个警�
 （2）用git clone命令克隆一个本地仓库，Git默认用SSh协议，也可以使用https等协议。
 $ git clone git@server-name:path/repo-name.git
 克隆远程库的时候，所使用的远程主机自动被Git命名为origin，然后用git push、git pull、git fetch命令推送、获取更新。
+  8.工作区和暂存区：在电脑里面能看到的目录，如learngit文件夹就是一个工作区。工作区有一个隐藏目录.git，它不算工作区，而是Git的版本库。.git版本库里面有一个暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针HEAD。
+第一步用git add把文件添加进去，实际上就是把文件修改添加到暂存区。
+第二步用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+每次修改，如果不add到暂存区，那就不会加入到commit中。
+  9.命令简介
+（1）git status命令掌握仓库当前的状态。
+（2）git diff命令查看修改。
+（3）git log命令显示从最近到最远的提交日志，以便确定要回退到哪个版本的commit id。如果嫌输出信息太多，可以加上--pretty=oneline参数来简化显示。（不同与SVN，Git的commit id不是1,2,3……递增的数字，而是一个SHA1计算出来的非常大的数字）
+（4）git reset --hard commit_id命令可以回退到指定的提交版本。（用HEAD表示当前版本，上一个版本是HEAD^，上上一个版本是HEAD^^，往上100个版本写成HEAD～100）
+（5）git reflog命令记录你的每一次命令，以便确定要回到未来的某版本的commit id。
+（6）场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。（--很重要，如果没有--，就变成了“切换到另一个分支”的命令）
+     场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file,就回到了场景1,第二步按场景1操作。
+     场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，可参考版本回退，不过前提是没有推送到远程库。
+（7）删除文件，在文件管理器中用rm命令把文件删除，然后用git rm命令把暂存区中的该文件删除，然后git commit。如果在文件管理器中是误操作删除了文件，那么可以用git check -- file命令恢复文件。
+  10.分支管理：其他版本控制系统如SVN的分支管理创建和切换分支很慢，Git的分支与众不同，无论创建、切换和删除分支，Git在1秒钟之内就能完成，无论版本库是1个文件还是1万个文件。每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。主分支即master分支，master指针指向该分支。HEAD指向的是当前分支。
+（1）创建dev分支然后切换到dev分支：$ git checkout -b dev（git checkout -b <name>：创建+切换分支），git checkout命令加上-b参数表示创建并切换，相当于以下两条命令
+$ git branch dev (git branch <name>：创建分支)
+$ git checkout dev（git checkout <name>：切换分支）
+（2）git branch命令会列出所有分支，当前分支前面会标一个*号
+（3）git checkout master切换到master分支，然后git merge dev命令将dev分支合并到master分支（git merge <name>：用于合并指定分支到当前分支，Fast-forward快进模式指直接把master指针指向dev分支，所以合并速度快）。
+（4）git branch -d dev命令删除dev分支（git branch -d <name>：删除分支）。
+Git鼓励使用分支完成某个任务，合并后再删除分支，这和直接在master分支上工作效果一样，但过程更安全。
+
 
 
 
