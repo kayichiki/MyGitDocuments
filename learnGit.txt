@@ -59,6 +59,37 @@ git log --graph命令可以看到分支合并图。
 git merge --no-ff -m "merge with no-ff" dev
 --no-ff参数表示禁用Fast forward，由于本次合并要创建一个新的commit，所以加上-m参数，把commit描述附上。
 在实际开发中，我们应该按照几个基本原则进行分支管理：master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活。干活都在dev分支上，dev分支是不稳定的，到版本发布时，再把dev分支合并到master上，在master分支发布版本。每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+  13.Bug分支：Bug可以通过创建一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。
+当修复Bug时，手头正在开发的dev分支没有做完还无法提交情况下，使用stash功能，将当前分支的工作现场“储藏”起来，等以后恢复现场后继续工作。
+$ git stash命令保存当前工作现场。
+确定在哪个分支上修复bug就在哪个分支上创建修改bug的临时分支，修复完成，git merge命令合并，git branch -d命令删除临时分支。
+git stash list命令查看工作现场stash的信息。
+恢复工作现场有两个办法：
+（1）用git stash apply命令恢复，但是恢复后，stash内容并不删除，需要git stash drop命令来删除。
+（2）用git stash pop命令，恢复的同时把stash内容也删了。
+你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令$ git stash apply stash@{0}
+  14.Feature分支：开发一个新功能，最好创建一个新的feature分支，在上面开发，完成后，合并，最后删除该feature分支。如果在合并feature分支前删除feature分支，需要使用git branch -D <branchName>来强制删除该feature分支，如果用git branch -d <branchName>命令删除分支，Git会友情提醒你该分支没有被合并，如果删除需要使用命令git branch -D <branchName>。
+  15.多人协作：当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且远程仓库的默认名称是origin。
+$ git remote命令来查看远程库的信息。
+$ git remote -v命令显示远程库的详细信息。
+（1）推送分支：就是把该分支上的所有本地提交推送到远程库
+$ git push origin <branch-name>
+理论上可以把任意的分支推送到远程库，但实际上有些分支需要，有些分支不需要：
+a.master分支需要时刻与远程同步
+b.dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步
+c.bug分支用于本地修复bug，就没有必要推送到远程了。
+d.feature分支是否需要推送到远程，取决团队成员是否在该分支上开发。
+（2）抓取分支：从远程库clone时，默认情况下，只能看到本地的master分支，如果要在dev分支上开发，就必须创建远程origin的dev分支到本地
+$ git checkout -b dev origin/dev命令创建本地dev分支。创建完本地的dev分支后就可以在dev分支上进行开发，然后时不时把dev分支push到远程。
+$ git push origin dev
+如果当远程库上的最新提交和你试图推送的提交有冲突，则会提示推送失败。我们需要先用git pull命令把远程库上的最新提交抓取下来进行合并，解决冲突，再推送。
+在git pull命令抓取时提示“no tracking information”,则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name进行创建链接。
+多人协作的工作模式通常是这样：
+a.首先可以试图用git push origin branch-name推送自己的修改
+b.如果推送失败，则因为远程分支比你的本地版本更新，需要先用git pull试图合并
+c.如果合并有冲突，可解决冲突，并在本地提交
+d.没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功
+（此工作模式类似与SVN的Update和commit，首先Commit出错，提示版本不是最新版本，需要Update，Update时合并修改，出现冲突，解决冲突后再提交再推送远程库）
   
 
 
