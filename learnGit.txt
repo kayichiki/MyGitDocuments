@@ -90,6 +90,37 @@ b.如果推送失败，则因为远程分支比你的本地版本更新，需要
 c.如果合并有冲突，可解决冲突，并在本地提交
 d.没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功
 （此工作模式类似与SVN的Update和commit，首先Commit出错，提示版本不是最新版本，需要Update，Update时合并修改，出现冲突，解决冲突后再提交再推送远程库）
+  16.标签管理：发布版本时，通常在版本库打一个标签（tag）v1.2，如此，取某个发布版本，直接根据标签就能快速取出相应的历史版本。标签是版本库的快照，但其实就是指向某个commit的指针。tag就是一个让人容易记住的有意义的名字，它跟某个commit绑一起，如此就不需要记忆复杂无意义的commit id。
+（1）创建标签：git checkout branch-name切换到需要打标签的分支上，然后
+用git tag <name>命令在该分支的最新提交的commit上打一个<name>标签。如果想给历史的某一个commit打标签，则用git tag <name> <commit-id>命令，即只要加上提交的commit id就可以为历史提交打标签。commit id可以通过git log命令获取到历史的commit id。
+用git tag -a <tagname> -m <"comment">命令还可以用参数来创建出带有说明的标签（参数中加-s可以用私钥签名标签，签名采用PGP签名，相关略，用到再研究）
+用git tag命令可以查看标签，注意，标签不是按时间顺序输出，而是按字母排序。
+用git show <tagname>命令可以查看某个标签的具体信息。
+（2）操作标签：
+git tag -d <tagname>命令删除一个本地的标签
+git push origin <tagname>命令推送某个本地标签到远程
+git push origin --tags命令一次性推送全部尚未推送到远程的本地标签
+删除远程的标签，首先删除本地的标签，然后用git push origin :refs/tags/<tagname>的命令格式来删除远程标签
+  17.使用GitHub：如何参加一个开源项目？例如bootstrap项目。首先访问它的项目主页https://github.com/twbs/bootstrap，点“Fork”就在自己的帐号下克隆了一个bootstrap仓库，然后，从自己的帐号下clone.
+git clone git@github.com:<自己的帐号>/bootstrap.git
+一定要从自己的帐号下clone仓库，这样你才能推送修改，如果从bootstrap项目主页的仓库地址克隆，因为没有权限，是不能推送修改的。
+如果你希望bootstrap官方库能接受你的修改，你可以在GitHub上发起一个pull request,当然对方是否接受你的pull request就是对方决定了。
+类似于GitHub，国内有Git托管服务——码云（gitee.com）
+  18.自定义Git：
+(1)Git有很多可配置项，例如git config --global color.ui true命令让Git显示颜色，会让命令输出看起来更醒目。
+(2)忽略特殊文件：某些文件（如数据库密码的配置文件）放在Git工作目录中，但又不能提交它们，每次git status都会提示这些文件没有添加，在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件，最后一步就是把.gitignore也git commit提交到Git。
+不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：https://github.com/github/gitignore
+忽略文件的原则是：
+a.忽略操作系统自动生成的文件，如缩略图等
+b.忽略编译生成的中间文件、可执行文件等，如Java编译产生的.class文件
+c.忽略你自己的带有敏感信息的配置文件，如存放口令的配置文件
+有时候，添加一个文件到Git，添加不了，原因是这个文件被.gitignore忽略了，可以用-f参数强制添加到Git，git add -f <filename>
+或者发现可能是.gitignore写得有问题，用git check-ignore命令可以找出到底是哪个规则写错了。git check-ignore -v <filename>
+(3)配置别名：git config --global alias.<缩写单词> <源命令单词>，例如git config --global alias.st status将st表示status，之后用git st就替代git status用了。--global是针对当前用户起作用的，如果不加，那就只针对当前的仓库起作用。
+当前仓库的配置文件放在.git/config文件中，在该文件中[alias]后面就是所设置的别名信息，如果要删除修改增加别名，直接删除修改增加对应的行即可。
+当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig。
+  19.搭建Git服务器：略
+
   
 
 
