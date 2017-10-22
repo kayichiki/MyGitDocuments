@@ -1,0 +1,91 @@
+最近看到《google程序员养成指南》的内容，突然有所触动。第一、要成为一名成功的软件工程师，必须具备扎实的计算机基础，所有的成功都是脚踏实日积月累的结果。第二、相比于所列出的计算机基础能力，我相差甚远，希望自己能按照成功的标准，查漏补缺，亡羊补牢，为时不晚。
+//×××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××//
+//×××××××××××google程序员养成指南需掌握的主要内容××××××××××××××××××××××//
+//×××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××//
+
+（1）计算机科学导论课程
+（2）学习至少一种面向对象编程语言，如C++,java或Python
+（3）学习其他的编程语言（Java Script, CSS, HTML, Ruby, PHP, C, Perl, Shell, Lisp, Scheme）
+（4）测试和提高自己的编程能力（例如：排查故障，创建测试，破解软件）
+（5）学习逻辑推理和离散数学
+（6）深入理解算法和数据结构（学习基本的数据类型，如堆栈，队列和数据包；了解排序演算，如快速排序，二路归并排序和堆排序；了解数据结构，如二叉搜索树，红黑树和哈希表。）
+（7）深入了解操作系统
+（8）人工智能相关课程
+（9）如何开发一个编译器
+（10）密码学
+（11）并行编程
+//×××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××
+计算机科学导论课程
+你可以选择提供在线编程工具的计算机导论课程。
+课程推荐：
+Udacity - intro to CS course
+Coursera - Computer Science 101
+
+学习至少一种面向对象编程语言，如C++，Java 或Python
+入门课程：
+Coursera - Learn to Program: The Fundamentals,
+MIT Intro to Programming in Java（注：这是他们的公开课视频）
+Google's Python Class（注：Google Developers出品！）
+Coursera - Introduction to Python
+Python Open Source E-Book（注：Python教材免费在线看！）
+中级课程:
+Udacity's Design of Computer Programs
+Coursera - Learn to Program: Crafting Quality Code,
+Coursera - Programming Languages
+Brown University - Introduction to Programming Languages （注：这是布朗大学公开课的课件）
+
+学习其他的编程语言
+To learn list：Java Script, CSS, HTML, Ruby, PHP, C, Perl, Shell. Lisp, Scheme.
+相关在线学习资源：
+w3school.com - HTML Tutorial
+CodeAcademy.com
+
+测试和提高自己的编程能力
+例如：排查故障，创建测试，破解软件
+相关课程:
+Udacity - Software Testing Methods
+Udacity - Software Debugging
+
+学习逻辑推理和离散数学
+相关课程：
+MIT Mathematics for Computer Science（注：这是MIT公开课）
+Coursera - Introduction to Logic（注：《逻辑学导论》有中文字幕哟！）
+Coursera - Linear and Discrete Optimization
+Coursera - Probabilistic Graphical Models
+Coursera - Game Theory（注：斯坦福精品课程，还有续集《博弈论2》！）
+
+深入理解算法和数据结构
+学习基本的数据类型，如堆栈、队列和数据包；
+了解排序演算法，如快速排序，二路归并排序和堆排序；
+了解数据结构，如二叉搜索树，红黑树和哈希表。
+相关课程：
+MIT Introduction to Algorithms,
+Coursera Introduction to Algorithms Part 1 & Part 2
+List of Algorithms
+（注：这是英文维基给出的所有算法的列表，看看你完成了多少？）
+List of Data Structures（注：同上）
+参考书籍: The Algorithm Design Manual
+（注：这是美国亚马逊的购买链接，不清楚有没有中文版）
+
+深入了解操作系统
+相关课程： UC Berkeley Computer Science 162
+（注：上面的链接是Youtube的播放列表，ppt等课件请看学校网站的资源）
+
+人工智能相关课程
+Stanford University：
+Introduction to Robotics,
+Natural Language Processing
+Machine Learning
+（以上全是斯坦福的课程！人工智能哪家强！）
+
+如何开发一个编译器
+相关课程：Coursera - Compilers
+
+密码学
+Coursera - Cryptography
+Udacity - Applied Cryptography
+
+并行编程
+相关课程：Coursera - Heterogeneous Parallel Programming
+
+
