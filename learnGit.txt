@@ -121,8 +121,50 @@ c.忽略你自己的带有敏感信息的配置文件，如存放口令的配置
 当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig。
   19.搭建Git服务器：略
 
-  
-
-
-
+命令索引表：
+1）sudo apt-get install git
+2）git config --global user.name "Your Name"
+3）git config --global user.email "email@example.com"
+4）mkdir
+5）pwd
+6）git init
+7）git add <file>
+8）git commit
+9）ssh-keygen -t rsa -C "youremail@example.com"
+10）git remote add origin git@server-name:path/repo-name.git
+11）git push -u origin master（第一次） / git push origin master（简化命令）
+12）git clone git@server-name:path/repo-name.git
+13）git status
+14）git diff
+15）git log
+16）git reset --hard commit_id
+17）git reflog
+18）git checkout -- file
+19）rm + git rm + git commit
+20）git checkout -b dev（git checkout -b <name>：创建+切换分支）
+21）git branch dev (git branch <name>：创建分支)
+22）git checkout dev（git checkout <name>：切换分支）
+23）git branch
+24）git merge <name>：用于合并指定分支到当前分支，Fast-forward快进模式。
+25）git branch -d <name>：删除分支
+26）git log --graph命令可以看到分支合并图。
+27）git merge --no-ff -m "merge with no-ff" dev
+28）git stash命令保存当前工作现场
+29）git stash list命令查看工作现场stash的信息。
+30）git stash apply命令恢复，但是恢复后，stash内容并不删除，需要git stash drop命令来删除。
+31）用git stash pop命令，恢复的同时把stash内容也删了。
+32）git branch -D <branchName>来强制删除该feature分支，如果用git branch -d <branchName>命令删除分支，Git会友情提醒你该分支没有被合并
+33）git remote命令来查看远程库的信息。
+34）git remote -v命令显示远程库的详细信息。
+35）git tag <name>
+36）git tag <name> <commit-id>命令，即只要加上提交的commit id就可以为历史提交打标签
+37）git tag -a <tagname> -m <"comment">命令还可以用参数来创建出带有说明的标签
+38）git tag命令可以查看标签
+39）git show <tagname>命令可以查看某个标签的具体信息。
+40）git tag -d <tagname>命令删除一个本地的标签
+41）git push origin <tagname>命令推送某个本地标签到远程
+42）git push origin --tags命令一次性推送全部尚未推送到远程的本地标签
+43）git push origin :refs/tags/<tagname>的命令格式来删除远程标签
+44）git clone git@github.com:<自己的帐号>/bootstrap.git
+45）git config --global color.ui true命令让Git显示颜色，会让命令输出看起来更醒目。
 
